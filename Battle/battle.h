@@ -14,11 +14,13 @@ constexpr int MAX_ROWS{ 15 };
 
 namespace dll
 {
-	enum class BATTLE_API positions { vert = 0, hor = 1 };
+	enum class BATTLE_API dirs { vert = 0, hor = 1 };
 	
-	enum class BATTLE_API ships { small_ship = 0, mid_ship = 1, big_ship = 2, battleship = 3 };
+	enum class BATTLE_API ships { small_ship = 0, mid_ship1 = 1, mid_ship2 = 2, 
+		big_ship1 = 3, big_ship2 = 4, min_ship = 5,
+	};
 
-	enum class BATTLE_API content { free = 0, used = 1, near_ship = 2 };
+	enum class BATTLE_API content { free = 0, used = 1, near_ship = 2, explosion = 3, fire = 4 };
 
 	struct BATTLE_API FPOINT
 	{
@@ -52,6 +54,33 @@ namespace dll
 		int GetTileNumber(FPOINT position);
 		int GetTileCol(float x_position) const;
 		int GetTileRow(float y_position) const;
+	
+		bool IsAvailable(int tile_number)const;
 	};
+
+	class BATTLE_API SHIP
+	{
+	private:
+		ships type{ ships::min_ship };
+		
+		int ship_parts_alive = 1;
+
+		void sort_tiles();
+
+	public:
+		TILE ship_tile[4]{};
+		dirs dir = dirs::hor;
+
+		SHIP(ships _type, TILE _ship_tile[4], dirs _to_where);
+
+		int ship_healt() const;
+		void hit_ship(int which_part);
+		ships get_type()const;
+
+		friend SHIP* ShipFactory(ships what, TILE myTiles[4], dirs where);
+	};
+
+
+
 
 }
