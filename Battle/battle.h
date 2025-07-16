@@ -80,7 +80,7 @@ namespace dll
 		friend SHIP* ShipFactory(ships what, TILE myTiles[4], dirs where);
 	};
 
-
+	BATTLE_API void SetNearTiles(GRID& set_grid, TILE* ship, int size);
 
 
 }
