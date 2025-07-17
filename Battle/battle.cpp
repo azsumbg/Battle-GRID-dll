@@ -59,6 +59,10 @@ bool dll::GRID::IsAvailable(int tile_number)const
 
 	return true;
 }
+void dll::GRID::Release()
+{
+	delete this;
+}
 
 /////////////////////////////////////////////
 
@@ -222,6 +226,10 @@ void dll::SHIP::hit_ship(int which_part)
 dll::ships dll::SHIP::get_type()const
 {
 	return type;
+}
+void dll::SHIP::Release()
+{
+	delete this;
 }
 
 /////////////////////////////////////////////

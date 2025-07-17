@@ -58,6 +58,8 @@ namespace dll
 		int GetTileRow(float y_position) const;
 	
 		bool IsAvailable(int tile_number)const;
+	
+		void Release();
 	};
 
 	class BATTLE_API SHIP
@@ -78,6 +80,8 @@ namespace dll
 		int ship_healt() const;
 		void hit_ship(int which_part);
 		ships get_type()const;
+
+		void Release();
 
 		friend BATTLE_API SHIP* ShipFactory(ships what, TILE* myTiles, int size, dirs where, GRID& host_grid);
 	};
