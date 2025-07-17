@@ -36,6 +36,8 @@ namespace dll
 		int col{ 0 };
 		int row{ 0 };
 		
+		bool bombarded = false;
+
 		content state = content::free;
 	};
 
@@ -71,16 +73,20 @@ namespace dll
 		TILE ship_tile[4]{};
 		dirs dir = dirs::hor;
 
-		SHIP(ships _type, TILE _ship_tile[4], dirs _to_where);
+		SHIP(ships _type, TILE* _ship_tile, int size, dirs _to_where);
 
 		int ship_healt() const;
 		void hit_ship(int which_part);
 		ships get_type()const;
 
-		friend SHIP* ShipFactory(ships what, TILE myTiles[4], dirs where);
+		friend BATTLE_API SHIP* ShipFactory(ships what, TILE* myTiles, int size, dirs where, GRID& host_grid);
 	};
 
 	BATTLE_API void SetNearTiles(GRID& set_grid, TILE* ship, int size);
 
+	BATTLE_API SHIP* ShipFactory(ships what, TILE* myTiles, int size, dirs where, GRID& host_grid);
 
+	typedef SHIP* Ship;
+
+	typedef TILE* Tile;
 }

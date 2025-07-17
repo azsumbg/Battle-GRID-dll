@@ -178,11 +178,11 @@ void dll::SHIP::sort_tiles()
 		}
 	}
 }
-dll::SHIP::SHIP(ships _type, TILE _ship_tile[4], dirs _to_where)
+dll::SHIP::SHIP(ships _type, TILE* _ship_tile, int size, dirs _to_where)
 {
 	type = _type;
 	dir = _to_where;
-	for (int i = 0; i < 4; ++i)ship_tile[i] = _ship_tile[i];
+	for (int i = 0; i < size; ++i)ship_tile[i] = _ship_tile[i];
 
 	sort_tiles();
 
@@ -257,15 +257,13 @@ void dll::SetNearTiles(GRID& set_grid, TILE* ship, int size)
 	}
 }
 
+dll::SHIP* dll::ShipFactory(ships what, TILE* myTiles, int size, dirs where,GRID& host_grid)
+{
+	SHIP* ret{ nullptr };
 
+	ret = new SHIP(what, myTiles, size, where);
 
+	dll::SetNearTiles(host_grid, myTiles, size);
 
-
-
-
-
-
-////////////////////////////////////////////// 
-
-
-
+	return ret;
+}
