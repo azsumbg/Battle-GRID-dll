@@ -52,7 +52,7 @@ namespace dll
 
 		GRID();
 
-		FPOINT GetTileDims(int tile_number);
+		TILE GetTileDims(int tile_number);
 		int GetTileNumber(FPOINT position);
 		int GetTileCol(float x_position) const;
 		int GetTileRow(float y_position) const;

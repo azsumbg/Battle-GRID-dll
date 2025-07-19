@@ -22,15 +22,21 @@ dll::GRID::GRID()
 		}
 	}
 }
-dll::FPOINT dll::GRID::GetTileDims(int tile_number)
+dll::TILE dll::GRID::GetTileDims(int tile_number)
 {
 	int myrow = tile_number / MAX_COLS;
 	int mycol = tile_number - myrow * MAX_COLS;
 
-	FPOINT ret{};
+	TILE ret{};
 
-	ret.x = (float)(mycol * 50);
-	ret.y = (float)(myrow * 50 + 50);
+	ret.start.x = (float)(mycol * 50);
+	ret.start.y = (float)(myrow * 50 + 50);
+	ret.end.x = ret.start.x + 49.0f;
+	ret.end.y = ret.start.y + 49.0f;
+	
+	ret.col = mycol;
+	ret.row = myrow;
+	ret.number = tile_number;
 
 	return ret;
 }
