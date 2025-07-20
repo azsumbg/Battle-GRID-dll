@@ -6,6 +6,8 @@
 #define BATTLE_API __declspec(dllimport)
 #endif
 
+#include <random>
+
 constexpr float scr_width{ 1000.0f };
 constexpr float scr_height{ 800.0f };
 
@@ -39,6 +41,20 @@ namespace dll
 		bool bombarded = false;
 
 		content state = content::free;
+	};
+
+	class BATTLE_API RANDIT
+	{
+	private:
+		std::random_device rd{};
+		std::seed_seq* sq = nullptr;
+		std::mt19937* twister = nullptr;
+
+	public:
+		RANDIT();
+		~RANDIT();
+
+		int operator()(int min, int max);
 	};
 
 	class BATTLE_API GRID

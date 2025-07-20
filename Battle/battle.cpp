@@ -1,6 +1,27 @@
 #include "pch.h"
 #include "battle.h"
 
+// RANDIT ************************************
+
+dll::RANDIT::RANDIT()
+{
+	sq = new std::seed_seq{ rd(),rd(), rd(), rd(), rd(), rd(), rd() };
+	twister = new std::mt19937(*sq);
+}
+dll::RANDIT::~RANDIT()
+{
+	if (sq)delete sq;
+	if (twister)delete twister;
+}
+int dll::RANDIT::operator()(int min, int max)
+{
+	std::uniform_int_distribution distrib(min, max);
+
+	return distrib(*twister);
+}
+
+//////////////////////////////////////////////
+
 // GRID **************************************
 
 dll::GRID::GRID()
