@@ -275,11 +275,13 @@ void dll::SetNearTiles(GRID& set_grid, TILE* ship, int size)
 		if (i == 0)
 		{
 			if (this_col > 0)set_grid.grid[this_col - 1][this_row].state = content::used;
+			if (this_col < MAX_COLS - 1)set_grid.grid[this_col + 1][this_row].state = content::used;
 			if (this_row > 0)set_grid.grid[this_col][this_row - 1].state = content::used;
 			if (this_row < MAX_ROWS - 1)set_grid.grid[this_col][this_row + 1].state = content::used;
 		}
 		else if (i == size - 1)
 		{
+			if (this_col > 0)set_grid.grid[this_col - 1][this_row].state = content::used;
 			if (this_col < MAX_COLS - 1)set_grid.grid[this_col + 1][this_row].state = content::used;
 			if (this_row > 0)set_grid.grid[this_col][this_row - 1].state = content::used;
 			if (this_row < MAX_ROWS - 1)set_grid.grid[this_col][this_row + 1].state = content::used;
@@ -288,6 +290,8 @@ void dll::SetNearTiles(GRID& set_grid, TILE* ship, int size)
 		{
 			if (this_row > 0)set_grid.grid[this_col][this_row - 1].state = content::used;
 			if (this_row < MAX_ROWS - 1)set_grid.grid[this_col][this_row + 1].state = content::used;
+			if (this_col > 0)set_grid.grid[this_col - 1][this_row].state = content::used;
+			if (this_col < MAX_COLS - 1)set_grid.grid[this_col + 1][this_row].state = content::used;
 		}
 	}
 }
